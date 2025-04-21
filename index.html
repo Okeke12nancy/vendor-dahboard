@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Vendor Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>FoodMarket</h2>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li class="active"><a href="#dashboard"><i class="icon" data-feather="home"></i> Dashboard</a></li>
+                    <li><a href="#products"><i class="icon" data-feather="shopping-bag"></i> Products</a></li>
+                    <li><a href="#orders"><i class="icon" data-feather="shopping-cart"></i> Orders</a></li>
+                    <li><a href="#payments"><i class="icon" data-feather="credit-card"></i> Payments</a></li>
+                    <li><a href="#settings"><i class="icon" data-feather="settings"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Vendor Profile" class="avatar">
+                <div>
+                    <h4>Sarah's Kitchen</h4>
+                    <p>Premium Vendor</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="search-bar">
+                    <i class="icon" data-feather="search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <i class="icon" data-feather="bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="help-btn">
+                        <i class="icon" data-feather="help-circle"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Overview Section -->
+            <section id="dashboard" class="dashboard-section active">
+                <h1>Dashboard Overview</h1>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(255, 99, 132, 0.2);">
+                            <i data-feather="dollar-sign" style="color: #ff6384;"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Total Revenue</h3>
+                            <p class="stat-value">$8,459.00</p>
+                            <p class="stat-change positive">+12.5% from last month</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(54, 162, 235, 0.2);">
+                            <i data-feather="shopping-cart" style="color: #36a2eb;"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Total Orders</h3>
+                            <p class="stat-value">245</p>
+                            <p class="stat-change positive">+8.3% from last month</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(255, 159, 64, 0.2);">
+                            <i data-feather="users" style="color: #ff9f40;"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>New Customers</h3>
+                            <p class="stat-value">38</p>
+                            <p class="stat-change positive">+5.2% from last month</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(75, 192, 192, 0.2);">
+                            <i data-feather="shopping-bag" style="color: #4bc0c0;"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Products</h3>
+                            <p class="stat-value">24</p>
+                            <p class="stat-change negative">-2.1% from last month</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h3>Revenue Overview</h3>
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Top Selling Products</h3>
+                        <div class="top-products">
+                            <div class="product-item">
+                                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Vegetable Salad">
+                                <div class="product-details">
+                                    <h4>Vegetable Salad</h4>
+                                    <p>$12.99 • 89 orders</p>
+                                </div>
+                                <span class="product-percentage">24%</span>
+                            </div>
+                            <div class="product-item">
+                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Margherita Pizza">
+                                <div class="product-details">
+                                    <h4>Margherita Pizza</h4>
+                                    <p>$14.99 • 76 orders</p>
+                                </div>
+                                <span class="product-percentage">21%</span>
+                            </div>
+                            <div class="product-item">
+                                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Burger">
+                                <div class="product-details">
+                                    <h4>Classic Burger</h4>
+                                    <p>$9.99 • 65 orders</p>
+                                </div>
+                                <span class="product-percentage">18%</span>
+                            </div>
+                            <div class="product-item">
+                                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Pasta">
+                                <div class="product-details">
+                                    <h4>Creamy Pasta</h4>
+                                    <p>$11.99 • 52 orders</p>
+                                </div>
+                                <span class="product-percentage">14%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-orders">
+                    <div class="section-header">
+                        <h3>Recent Orders</h3>
+                        <a href="#orders" class="view-all">View All</a>
+                    </div>
+                    <div class="table-container">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#ORD-7895</td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer">
+                                            <span>John Doe</span>
+                                        </div>
+                                    </td>
+                                    <td>May 15, 2023</td>
+                                    <td>$42.50</td>
+                                    <td><span class="status-badge delivered">Completed</span></td>
+                                    <td><button class="action-btn"><i data-feather="more-vertical"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-7894</td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer">
+                                            <span>Charles Osegbue</span>
+                                        </div>
+                                    </td>
+                                    <td>May 15, 2023</td>
+                                    <td>$28.75</td>
+                                    <td><span class="status-badge processing">Processing</span></td>
+                                    <td><button class="action-btn"><i data-feather="more-vertical"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-7893</td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer">
+                                            <span>Daniel Opara</span>
+                                        </div>
+                                    </td>
+                                    <td>May 14, 2023</td>
+                                    <td>$35.20</td>
+                                    <td><span class="status-badge delivered">Completed</span></td>
+                                    <td><button class="action-btn"><i data-feather="more-vertical"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-7892</td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Customer">
+                                            <span>Salem Onyeana</span>
+                                        </div>
+                                    </td>
+                                    <td>May 14, 2023</td>
+                                    <td>$52.99</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                    <td><button class="action-btn"><i data-feather="more-vertical"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-7891</td>
+                                    <td>
+                                        <div class="customer-info">
+                                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer">
+                                            <span>Denis Ogunbowale</span>
+                                        </div>
+                                    </td>
+                                    <td>May 13, 2023</td>
+                                    <td>$18.50</td>
+                                    <td><span class="status-badge delivered">Completed</span></td>
+                                    <td><button class="action-btn"><i data-feather="more-vertical"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products" class="dashboard-section">
+                <div class="section-header">
+                    <h1>Products Management</h1>
+                    <button class="primary-btn" id="addProductBtn">
+                        <i data-feather="plus"></i> Add New Product
+                    </button>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="search-filter">
+                        <i class="icon" data-feather="search"></i>
+                        <input type="text" placeholder="Search products...">
+                    </div>
+                    <div class="filter-options">
+                        <select>
+                            <option>All Categories</option>
+                            <option>Main Course</option>
+                            <option>Appetizers</option>
+                            <option>Desserts</option>
+                            <option>Beverages</option>
+                        </select>
+                        <select>
+                            <option>Sort By: Newest</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Popularity</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Vegetable Salad">
+                            <div class="product-actions">
+                                <button class="edit-btn"><i data-feather="edit"></i></button>
+                                <button class="delete-btn"><i data-feather="trash-2"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Vegetable Salad</h3>
+                            <p class="product-category">Appetizers</p>
+                            <div class="product-meta">
+                                <p class="product-price">$12.99</p>
+                                <p class="product-stock in-stock">In Stock</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Margherita Pizza">
+                            <div class="product-actions">
+                                <button class="edit-btn"><i data-feather="edit"></i></button>
+                                <button class="delete-btn"><i data-feather="trash-2"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Margherita Pizza</h3>
+                            <p class="product-category">Main Course</p>
+                            <div class="product-meta">
+                                <p class="product-price">$14.99</p>
+                                <p class="product-stock in-stock">In Stock</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Classic Burger">
+                            <div class="product-actions">
+                                <button class="edit-btn"><i data-feather="edit"></i></button>
+                                <button class="delete-btn"><i data-feather="trash-2"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Classic Burger</h3>
+                            <p class="product-category">Main Course</p>
+                            <div class="product-meta">
+                                <p class="product-price">$9.99</p>
+                                <p class="product-stock in-stock">In Stock</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Creamy Pasta">
+                            <div class="product-actions">
+                                <button class="edit-btn"><i data-feather="edit"></i></button>
+                                <button class="delete-btn"><i data-feather="trash-2"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Creamy Pasta</h3>
+                            <p class="product-category">Main Course</p>
+                            <div class="product-meta">
+                                <p class="product-price">$11.99</p>
+                                <p class="product-stock in-stock">In Stock</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chocolate Cake">
+                            <div class="product-actions">
+                                <button class="edit-btn"><i data-feather="edit"></i></button>
+                                <button class="delete-btn"><i data-feather="trash-2"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Chocolate Cake</h3>
+                            <p class="product-category">Desserts</p>
+                            <div class="product-meta">
+                                <p class="product-price">$8.99</p>
+                                <p class="product-stock low-stock">Low Stock</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fresh Smoothie">
+                            <div class="product-actions">
+                                <button class="edit-btn"><i data-feather="edit"></i></button>
+                                <button class="delete-btn"><i data-feather="trash-2"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3>Fresh Smoothie</h3>
+                            <p class="product-category">Beverages</p>
+                            <div class="product-meta">
+                                <p class="product-price">$6.99</p>
+                                <p class="product-stock out-of-stock">Out of Stock</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Product Modal -->
+                <div id="addProductModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Add New Product</h2>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addProductForm">
+                                <div class="form-group">
+                                    <label for="productName">Product Name</label>
+                                    <input type="text" id="productName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productCategory">Category</label>
+                                    <select id="productCategory" required>
+                                        <option value="">Select Category</option>
+                                        <option value="Main Course">Main Course</option>
+                                        <option value="Appetizers">Appetizers</option>
+                                        <option value="Desserts">Desserts</option>
+                                        <option value="Beverages">Beverages</option>
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="productPrice">Price ($)</label>
+                                        <input type="number" id="productPrice" step="0.01" min="0" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="productStock">Stock</label>
+                                        <input type="number" id="productStock" min="0" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productDescription">Description</label>
+                                    <textarea id="productDescription" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="productImage">Product Image</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="productImage" accept="image/*">
+                                        <label for="productImage" class="file-upload-label">
+                                            <i data-feather="upload"></i>
+                                            <span>Choose a file</span>
+                                        </label>
+                                    </div>
+                                    <div id="imagePreview" class="image-preview"></div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="secondary-btn cancel-btn">Cancel</button>
+                                    <button type="submit" class="primary-btn">Add Product</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Orders Section -->
+            <section id="orders" class="dashboard-section">
+                <h1>Orders Management</h1>
+                
+                <div class="filter-bar">
+                    <div class="search-filter">
+                        <i class="icon" data-feather="search"></i>
+                        <input type="text" placeholder="Search orders...">
+                    </div>
+                    <div class="filter-options">
+                        <select>
+                            <option>All Status</option>
+                            <option>Processing</option>
+                            <option>Delivered</option>
+                            <option>Cancelled</option>
+                        </select>
+                        <select>
+                            <option>Last 30 Days</option>
+                            <option>Last Week</option>
+                            <option>Last 3 Months</option>
+                            <option>Last Year</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ORD-7895</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer">
+                                        <div>
+                                            <span>John Doe</span>
+                                            <small>john.doe@example.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>May 15, 2023<br><small>2:30 PM</small></td>
+                                <td>3 items</td>
+                                <td>$42.50</td>
+                                <td><span class="status-badge delivered">Delivered</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="view-btn"><i data-feather="eye"></i></button>
+                                        <button class="print-btn"><i data-feather="printer"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-7894</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer">
+                                        <div>
+                                            <span>Emma Wilson</span>
+                                            <small>emma.w@example.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>May 15, 2023<br><small>1:15 PM</small></td>
+                                <td>2 items</td>
+                                <td>$28.75</td>
+                                <td><span class="status-badge processing">Processing</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="view-btn"><i data-feather="eye"></i></button>
+                                        <button class="print-btn"><i data-feather="printer"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-7893</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Customer">
+                                        <div>
+                                            <span>Michael Brown</span>
+                                            <small>m.brown@example.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>May 14, 2023<br><small>7:45 PM</small></td>
+                                <td>4 items</td>
+                                <td>$35.20</td>
+                                <td><span class="status-badge delivered">Delivered</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="view-btn"><i data-feather="eye"></i></button>
+                                        <button class="print-btn"><i data-feather="printer"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-7892</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Customer">
+                                        <div>
+                                            <span>Sophia Garcia</span>
+                                            <small>s.garcia@example.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>May 14, 2023<br><small>5:20 PM</small></td>
+                                <td>3 items</td>
+                                <td>$52.99</td>
+                                <td><span class="status-badge cancelled">Cancelled</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="view-btn"><i data-feather="eye"></i></button>
+                                        <button class="print-btn"><i data-feather="printer"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-7891</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer">
+                                        <div>
+                                            <span>David Lee</span>
+                                            <small>d.lee@example.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>May 13, 2023<br><small>1:30 PM</small></td>
+                                <td>1 item</td>
+                                <td>$18.50</td>
+                                <td><span class="status-badge delivered">Delivered</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="view-btn"><i data-feather="eye"></i></button>
+                                        <button class="print-btn"><i data-feather="printer"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-7890</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Customer">
+                                        <div>
+                                            <span>Olivia Johnson</span>
+                                            <small>o.johnson@example.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>May 13, 2023<br><small>11:45 AM</small></td>
+                                <td>2 items</td>
+                                <td>$24.75</td>
+                                <td><span class="status-badge delivered">Delivered</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="view-btn"><i data-feather="eye"></i></button>
+                                        <button class="print-btn"><i data-feather="printer"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-7889</td>
+                                <td>
+                                    <div class="customer-info">
+                                        <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Customer">
+                                        <div>
+                                            <span>James Wilson</span>
+                                            <small>j.wilson@example.com</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>May 12, 2023<br><small>3:20 PM</small></td>
+                                <td>5 items</td>
+                                <td>$67.30</td>
+                                <td><span class="status-badge processing">Processing</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="view-btn"><i data-feather="eye"></i></button>
+                                        <button class="print-btn"><i data-feather="printer"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button class="pagination-btn"><i data-feather="chevron-left"></i></button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn">...</button>
+                    <button class="pagination-btn">10</button>
+                    <button class="pagination-btn"><i data-feather="chevron-right"></i></button>
+                </div>
+            </section>
+
+            <!-- Payments Section -->
+            <section id="payments" class="dashboard-section">
+                <h1>Payments Overview</h1>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(255, 99, 132, 0.2);">
+                            <i data-feather="dollar-sign" style="color: #ff6384;"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Total Revenue</h3>
+                            <p class="stat-value">$8,459.00</p>
+                            <p class="stat-change positive">+12.5% from last month</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(54, 162, 235, 0.2);">
+                            <i data-feather="credit-card" style="color: #36a2eb;"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Pending Payments</h3>
+                            <p class="stat-value">$1,245.50</p>
+                            <p class="stat-change negative">-3.2% from last month</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(255, 159, 64, 0.2);">
+                            <i data-feather="trending-up" style="color: #ff9f40;"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Average Order Value</h3>
+                            <p class="stat-value">$34.50</p>
+                            <p class="stat-change positive">+2.8% from last month</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background-color: rgba(75, 192, 192, 0.2);">
+                            <i data-feather="repeat" style="color: #4bc0c0;"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Refunds</h3>
+                            <p class="stat-value">$245.00</p>
+                            <p class="stat-change negative">+5.1% from last month</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h3>Revenue Trends</h3>
+                        <canvas id="revenueChart2"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Payment Methods</h3>
+                        <canvas id="paymentMethodsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="recent-transactions">
+                    <div class="section-header">
+                        <h3>Recent Transactions</h3>
+                        <div class="filter-dropdown">
+                            <select>
+                                <option>Last 7 Days</option>
+                                <option>Last 30 Days</option>
+                                <option>Last 3 Months</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Transaction ID</th>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Payment Method</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#TRX-5678</td>
+                                    <td>#ORD-7895</td>
+                                    <td>May 15, 2023</td>
+                                    <td>
+                                        <div class="payment-method">
+                                            <i data-feather="credit-card"></i>
+                                            <span>CEMCS Voucher</span>
+                                        </div>
+                                    </td>
+                                    <td>$42.50</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#TRX-5677</td>
+                                    <td>#ORD-7894</td>
+                                    <td>May 15, 2023</td>
+                                    <td>
+                                        <div class="payment-method">
+                                            <i data-feather="smartphone"></i>
+                                            <span>CEMCS Voucher</span>
+                                        </div>
+                                    </td>
+                                    <td>$28.75</td>
+                                    <td><span class="status-badge pending">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#TRX-5676</td>
+                                    <td>#ORD-7893</td>
+                                    <td>May 14, 2023</td>
+                                    <td>
+                                        <div class="payment-method">
+                                            <i data-feather="credit-card"></i>
+                                            <span>CEMCS Voucher</span>
+                                        </div>
+                                    </td>
+                                    <td>$35.20</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#TRX-5675</td>
+                                    <td>#ORD-7892</td>
+                                    <td>May 14, 2023</td>
+                                    <td>
+                                        <div class="payment-method">
+                                            <i data-feather="credit-card"></i>
+                                            <span>CEMCS Voucher</span>
+                                        </div>
+                                    </td>
+                                    <td>$52.99</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#TRX-5674</td>
+                                    <td>#ORD-7891</td>
+                                    <td>May 13, 2023</td>
+                                    <td>
+                                        <div class="payment-method">
+                                            <i data-feather="credit-card"></i>
+                                            <span>Credit Card</span>
+                                        </div>
+                                    </td>
+                                    <td>$18.50</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="dashboard-section">
+                <h1>Account Settings</h1>
+                
+                <div class="settings-container">
+                    <div class="settings-sidebar">
+                        <ul class="settings-nav">
+                            <li class="active"><a href="#profile-settings">Profile</a></li>
+                            <li><a href="#store-settings">Store Information</a></li>
+                            <!-- 
+                            <li><a href="#payment-settings">Payment Methods</a></li>
+                            <li><a href="#notification-settings">Notifications</a></li>
+                            <li><a href="#security-settings">Security</a></li> -->
+                        </ul>
+                    </div>
+                    
+                    <div class="settings-content">
+                        <div id="profile-settings" class="settings-panel active">
+                            <h2>Profile Information</h2>
+                            <form class="settings-form">
+                                <div class="profile-image-upload">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile Image">
+                                    <div class="upload-actions">
+                                        <button type="button" class="upload-btn">
+                                            <i data-feather="upload"></i> Upload New
+                                        </button>
+                                        <button type="button" class="remove-btn">
+                                            <i data-feather="trash-2"></i> Remove
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" value="Nancy">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" value="Okeke">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="businessName">Business Name</label>
+                                    <input type="text" id="businessName" value="Nancy's Kitchen">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" value="nana@nancykitchen.com">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" value="(810) 123-4567">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="bio">Bio</label>
+                                    <textarea id="bio" rows="4">Nancy's Kitchen specializes in homemade, organic meals made with locally-sourced ingredients. We've been serving the community since 2015.</textarea>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="primary-btn">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+            <!-- Invoice Modal -->
+    <div id="invoiceModal" class="modal">
+      <div class="modal-content invoice-modal-content">
+          <div class="modal-header">
+              <h2>Invoice</h2>
+              <button class="close-modal">&times;</button>
+          </div>
+          <div class="modal-body">
+              <div id="invoiceContent" class="invoice-content">
+                  <!-- Invoice content will be dynamically generated -->
+              </div>
+              <div class="form-actions">
+                  <button type="button" class="primary-btn" id="downloadInvoiceBtn">
+                      <i data-feather="download"></i> Download Invoice
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
